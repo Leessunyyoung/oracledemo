@@ -226,8 +226,35 @@ minus(차집합)-첫번째 query에 있는 행 중 두번째 query에 없는 행
 --union(합집합)
 SELECT department_id,first_name,last_name
 FROM employees
-WHERE department_id=20 or department_id =40;
+WHERE department_id=20 or department_id =40
+UNION
+SELECT department_id,first_name,last_name
+FROM employees
+WHERE department_id=20 or department_id =60;
 
+--union all(합집합)
+SELECT department_id,first_name,last_name
+FROM employees
+WHERE department_id=20 or department_id =40
+UNION ALL
+SELECT department_id,first_name,last_name
+FROM employees
+WHERE department_id=20 or department_id =60;
+
+--intersect(교집합)
+SELECT department_id,first_name,last_name
+FROM employees
+WHERE department_id=20 or department_id =40
+INTERSECT
+SELECT department_id,first_name,last_name
+FROM employees
+WHERE department_id=20 or department_id =60;
+
+--minus(=expect) (차집합)
+SELECT department_id,first_name,last_name
+FROM employees
+WHERE department_id=20 or department_id =40
+MINUS
 SELECT department_id,first_name,last_name
 FROM employees
 WHERE department_id=20 or department_id =60;

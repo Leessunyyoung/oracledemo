@@ -1,55 +1,107 @@
 /////////////////////////////////////
-////--¹®Á¦--
+////--ë¬¸ì œ--
 ////////////////////////////////////// 
-1) employeesÅ×ÀÌºí¿¡¼­ ±Ş¿©°¡ 17000ÀÌÇÏÀÎ »ç¿øÀÇ »ç¿ø¹øÈ£, »ç¿ø¸í(first_name), ±Ş¿©¸¦ Ãâ·ÂÇÏ½Ã¿À.
+1) employeesí…Œì´ë¸”ì—ì„œ ê¸‰ì—¬ê°€ 17000ì´í•˜ì¸ ì‚¬ì›ì˜ ì‚¬ì›ë²ˆí˜¸, ì‚¬ì›ëª…(first_name), ê¸‰ì—¬ë¥¼ ì¶œë ¥í•˜ì‹œì˜¤.
  SELECT employee_id, first_name, salary
+ FROM employees
+ WHERE salary <=17000;
 
 
-2) employeesÅ×ÀÌºí¿¡¼­ 2005³â 1¿ù 1ÀÏ ÀÌÈÄ¿¡ ÀÔ»çÇÑ »ç¿øÀ» Ãâ·ÂÇÏ½Ã¿À.
+2) employeesí…Œì´ë¸”ì—ì„œ 2005ë…„ 1ì›” 1ì¼ ì´í›„ì— ì…ì‚¬í•œ ì‚¬ì›ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+SELECT *
+FROM employees
+WHERE hire_date >= to_date('2005-01-01','yyyy-mm-dd');
 
 
-3) employeesÅ×ÀÌºí¿¡¼­ ±Ş¿©°¡ 5000ÀÌ»óÀÌ°í ¾÷¹«(job_id)ÀÌ 'IT_PROG'ÀÌ »ç¿øÀÇ »ç¿ø¸í(first_name), ±Ş¿©, 
-   ¾÷¹«À» Ãâ·ÂÇÏ½Ã¿À.
+3) employeesí…Œì´ë¸”ì—ì„œ ê¸‰ì—¬ê°€ 5000ì´ìƒì´ê³  ì—…ë¬´(job_id)ì´ 'IT_PROG'ì´ ì‚¬ì›ì˜ ì‚¬ì›ëª…(first_name), ê¸‰ì—¬, 
+   ì—…ë¬´ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+   SELECT first_name,salary,job_id
+   FROM employees
+   WHERE salary>=5000 AND job_id = 'IT_PROG';
+4) employeesí…Œì´ë¸”ì—ì„œ ë¶€ì„œë²ˆí˜¸ê°€ 10, 40, 50 ì¸ ì‚¬ì›ì˜ ì‚¬ì›ëª…(first_name), ë¶€ì„œë²ˆí˜¸, ì´ë©”ì¼(email)ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+
+    SELECT first_name,department_id,email
+    FROM employees
+    WHERE department_id IN(10,40,50);
 
 
-4) employeesÅ×ÀÌºí¿¡¼­ ºÎ¼­¹øÈ£°¡ 10, 40, 50 ÀÎ »ç¿øÀÇ »ç¿ø¸í(first_name), ºÎ¼­¹øÈ£, ÀÌ¸ŞÀÏ(email)À» Ãâ·ÂÇÏ½Ã¿À.
+5) employeesí…Œì´ë¸”ì—ì„œ ì‚¬ì›ëª…(first_name)ì´ evenì´ í¬í•¨ëœ ì‚¬ì›ëª…,ê¸‰ì—¬,ì…ì‚¬ì¼ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+
+SELECT employee_id,salary,hire_date
+FROM employees
+WHERE first_name LIKE '%even%';
+
+6) employeesí…Œì´ë¸”ì—ì„œ ì‚¬ì›ëª…(first_name)ì´ teveì•ë’¤ì— ë¬¸ìê°€ í•˜ë‚˜ì”© ìˆëŠ” ì‚¬ì›ëª…,ê¸‰ì—¬,ì…ì‚¬ì¼ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+SELECT employee_id,salary,hire_date
+FROM employees
+WHERE first_name LIKE '_teve_';
 
 
-5) employeesÅ×ÀÌºí¿¡¼­ »ç¿ø¸í(first_name)ÀÌ evenÀÌ Æ÷ÇÔµÈ »ç¿ø¸í,±Ş¿©,ÀÔ»çÀÏÀ» Ãâ·ÂÇÏ½Ã¿À.
-
-6) employeesÅ×ÀÌºí¿¡¼­ »ç¿ø¸í(first_name)ÀÌ teve¾ÕµÚ¿¡ ¹®ÀÚ°¡ ÇÏ³ª¾¿ ÀÖ´Â »ç¿ø¸í,±Ş¿©,ÀÔ»çÀÏÀ» Ãâ·ÂÇÏ½Ã¿À.
-
-
-7) employeesÅ×ÀÌºí¿¡¼­ ±Ş¿©°¡ 17000ÀÌÇÏÀÌ°í Ä¿¹Ì¼ÇÀÌ nullÀÌ ¾Æ´Ò¶§ÀÇ »ç¿ø¸í(first_name), ±Ş¿©, 
-  Ä¿¹Ì¼ÇÀ» Ãâ·ÂÇÏ½Ã¿À.
- 
+7) employeesí…Œì´ë¸”ì—ì„œ ê¸‰ì—¬ê°€ 17000ì´í•˜ì´ê³  ì»¤ë¯¸ì…˜ì´ nullì´ ì•„ë‹ë•Œì˜ ì‚¬ì›ëª…(first_name), ê¸‰ì—¬, 
+  ì»¤ë¯¸ì…˜ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+ SELECT employee_id,salary,commission_pct
+ FROM employees
+ WHERE salary <=17000 and commission_pct is not null;
   
-8) 2005³âµµ¿¡ ÀÔ»çÇÑ »ç¿øÀÇ »ç¿ø¸í(first_name),ÀÔ»çÀÏÀ» Ãâ·ÂÇÏ½Ã¿À.
+8) 2005ë…„ë„ì— ì…ì‚¬í•œ ì‚¬ì›ì˜ ì‚¬ì›ëª…(first_name),ì…ì‚¬ì¼ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+ SELECT first_name,hire_date
+ FROM employees
+ WHERE to_char(hire_date,'yyyy') = '2005';
+
+9) ì»¤ë¯¸ì…˜ ì§€ê¸‰ ëŒ€ìƒì¸ ì‚¬ì›ì˜ ì‚¬ì›ëª…(first_name), ì»¤ë¯¸ì…˜ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+SELECT first_name,commission_pct
+FROM employees
+WHERE commission_pct is not null;
  
 
-9) Ä¿¹Ì¼Ç Áö±Ş ´ë»óÀÎ »ç¿øÀÇ »ç¿ø¸í(first_name), Ä¿¹Ì¼ÇÀ» Ãâ·ÂÇÏ½Ã¿À.
+10) ì‚¬ë²ˆì´ 206ì¸ ì‚¬ì›ì˜ ì´ë¦„(first_name)ê³¼ ê¸‰ì—¬ë¥¼ ì¶œë ¥í•˜ì‹œì˜¤.
+SELECT first_name,salary
+FROM employees
+WHERE employee_id =206;
+
+
+11) ê¸‰ì—¬ê°€ 3000ì´ ë„˜ëŠ” ì—…ë¬´(job_id),ê¸‰ì—¬(salary)ë¥¼ ì¶œë ¥í•˜ì‹œì˜¤.
+SELECT job_id,salary
+FROM employees
+WHERE salary > 3000;
+
+
+12)'ST_MAN'ì—…ë¬´ì„ ì œì™¸í•œ ì‚¬ì›ë“¤ì˜ ì‚¬ì›ëª…(first_name)ê³¼ ì—…ë¬´(job_id)ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+SELECT first_name,job_id
+FROM employees
+WHERE job_id != 'ST_MAN';
+
+SELECT first_name,job_id
+FROM employees
+WHERE job_id <> 'ST_MAN';
+
+
+13) ì—…ë¬´ì´ 'PU_CLERK' ì¸ ì‚¬ì› ì¤‘ì—ì„œ ê¸‰ì—¬ê°€ 10000 ì´ìƒì¸ ì‚¬ì›ëª…(first_name),ì—…ë¬´(job_id),ê¸‰ì—¬(salary)ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+SELECT first_name,job_id,salary
+FROM employees
+WHERE job_id = 'PU_CLERK' and salary >=10000;
+
+
+14) commissionì„ ë°›ëŠ” ì‚¬ì›ëª…(first_name)ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+SELECT first_name
+FROM employees
+WHERE commission_pct is not null;
+
  
 
-10) »ç¹øÀÌ 206ÀÎ »ç¿øÀÇ ÀÌ¸§(first_name)°ú ±Ş¿©¸¦ Ãâ·ÂÇÏ½Ã¿À.
-
-
-11) ±Ş¿©°¡ 3000ÀÌ ³Ñ´Â ¾÷¹«(job_id),±Ş¿©(salary)¸¦ Ãâ·ÂÇÏ½Ã¿À.
-
-
-12)'ST_MAN'¾÷¹«À» Á¦¿ÜÇÑ »ç¿øµéÀÇ »ç¿ø¸í(first_name)°ú ¾÷¹«(job_id)À» Ãâ·ÂÇÏ½Ã¿À.
-
-
-13) ¾÷¹«ÀÌ 'PU_CLERK' ÀÎ »ç¿ø Áß¿¡¼­ ±Ş¿©°¡ 10000 ÀÌ»óÀÎ »ç¿ø¸í(first_name),¾÷¹«(job_id),±Ş¿©(salary)À» Ãâ·ÂÇÏ½Ã¿À.
-
-
-14) commissionÀ» ¹Ş´Â »ç¿ø¸í(first_name)À» Ãâ·ÂÇÏ½Ã¿À.
- 
-
-15) 20¹ø ºÎ¼­¿Í 30¹ø ºÎ¼­¿¡ ¼ÓÇÑ »ç¿øÀÇ »ç¿ø¸í(fist_name), ºÎ¼­¸¦ Ãâ·ÂÇÏ½Ã¿À.
+15) 20ë²ˆ ë¶€ì„œì™€ 30ë²ˆ ë¶€ì„œì— ì†í•œ ì‚¬ì›ì˜ ì‚¬ì›ëª…(fist_name), ë¶€ì„œë¥¼ ì¶œë ¥í•˜ì‹œì˜¤.
+SELECT first_name,department_id
+FROM employees
+WHERE department_id in(20,30);
 
    
 
-16) ±Ş¿©°¡ ¸¹Àº »ç¿øºÎÅÍ Ãâ·ÂÇÏµÇ ±Ş¿©°¡ °°Àº °æ¿ì »ç¿ø¸í(first_name) ¼ø¼­´ë·Î Ãâ·ÂÇÏ½Ã¿À.
- 
+16) ê¸‰ì—¬ê°€ ë§ì€ ì‚¬ì›ë¶€í„° ì¶œë ¥í•˜ë˜ ê¸‰ì—¬ê°€ ê°™ì€ ê²½ìš° ì‚¬ì›ëª…(first_name) ìˆœì„œëŒ€ë¡œ ì¶œë ¥í•˜ì‹œì˜¤.
+ SELECT first_name
+ FROM employees
+ ORDER BY salary DESC;
+17) ì—…ë¬´ì´ 'MAN' ëë‚˜ëŠ” ì‚¬ì›ì˜ ì‚¬ì›ëª…(first_name), ê¸‰ì—¬(salary), ì—…ë¬´(job_id)ì„ ì¶œë ¥í•˜ì‹œì˜¤.
 
-17) ¾÷¹«ÀÌ 'MAN' ³¡³ª´Â »ç¿øÀÇ »ç¿ø¸í(first_name), ±Ş¿©(salary), ¾÷¹«(job_id)À» Ãâ·ÂÇÏ½Ã¿À.
+SELECT first_name,salary,job_id
+FROM employees
+WHERE job_id LIKE '%MAN';
